@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class N2 : MonoBehaviour
 {
-    Hero hero = new Hero();
-
+    Hero hero;
+    /// <summary>
+    /// En el start generamos de manera aleatoria la cantidad de instancias necesarias
+    /// creamos el array para los nombres y generamos el heroe
+    /// </summary>
     void Start()
     {
-        hero.Heroes();
+        hero = new Hero();
+        string[] nombres = new string[] { "Daniel", "Julio", "Sebastian", "Santiago", "Alex", "Danilo", "Luis", "Juan", "Anderson", "Cristian", "Alejandro", "Kevin", "Jorge", "Felipe", "David", "Natalia", "Camila", "Monica", "Andrea", "Carolina" };
         int random;
         int random2 = Random.Range(4, 10);
 
@@ -18,9 +22,9 @@ public class N2 : MonoBehaviour
             if (random == 0)
                 new Zombie();
             else
-                new Aldeano();
+                new Aldeano(nombres[Random.Range(0, 20)]);
         }
-        
+
     }
 
     public void Update()
@@ -36,13 +40,13 @@ public class N2 : MonoBehaviour
 /// </summary>
 internal class Aldeano
 {
-    string[] nombres = new string[] { "Daniel", "Julio", "Sebastian", "Santiago", "Alex", "Danilo", "Luis", "Juan", "Anderson", "Cristian", "Alejandro", "Kevin", "Jorge", "Felipe", "David", "Natalia", "Camila", "Monica", "Andrea", "Carolina" };
+
     GameObject aldeano;
-    public Aldeano()
+    public Aldeano(string nombres)
     {
         aldeano = GameObject.CreatePrimitive(PrimitiveType.Cube);
         aldeano.transform.position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-        aldeano.name = nombres[Random.Range(0, 20)];
+        aldeano.name = nombres;
         int edad = Random.Range(15, 101);
 
         Debug.Log("Hola soy " + aldeano.name + " Y tengo " + edad + " Años ");
@@ -56,7 +60,7 @@ internal class Aldeano
 /// </summary>
 internal class Zombie
 {
-    int colores = Random.Range(0, 4);
+    int colores = Random.Range(0, 3);
 
     GameObject zombie;
     public Zombie()
@@ -90,7 +94,8 @@ internal class Zombie
 internal class Hero
 {
     GameObject heroe;
-    public void Heroes()
+
+    public Hero()
     {
         heroe = GameObject.CreatePrimitive(PrimitiveType.Capsule);
         heroe.transform.position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
