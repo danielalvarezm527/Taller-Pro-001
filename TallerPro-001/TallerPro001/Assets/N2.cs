@@ -49,7 +49,23 @@ internal class Aldeano
         aldeano.name = nombres;
         int edad = Random.Range(15, 101);
 
-        Debug.Log("Hola soy " + aldeano.name + " Y tengo " + edad + " Años ");
+        Debug.Log(enviaMensaje(aldeano.name,edad));
+    }
+
+    /// <summary>
+    /// En este metodo hacemos el return de el nombre y la edad de los aldeanos
+    /// </summary>
+    /// <param name="nombre">
+    /// Nombre del aldeano
+    /// </param>
+    /// <param name="edad">
+    /// Edad del aldeano
+    /// </param>
+    /// <returns></returns>
+    string enviaMensaje(string nombre, int edad)
+    {
+        string mensaje = "Hola soy " + aldeano.name + " Y tengo " + edad + " Años ";
+        return mensaje;
     }
 
 }
@@ -61,7 +77,7 @@ internal class Aldeano
 internal class Zombie
 {
     int colores = Random.Range(0, 3);
-
+    string color;
     GameObject zombie;
     public Zombie()
     {
@@ -72,19 +88,32 @@ internal class Zombie
         if (colores == 0)
         {
             zombie.GetComponent<Renderer>().material.color = Color.cyan;
-            Debug.Log("Soy un zombie de color Cyan");
+            color = "Cyan";
         }
         else if (colores == 1)
         {
             zombie.GetComponent<Renderer>().material.color = Color.magenta;
-            Debug.Log("Soy un zombie de color Magenta");
+            color = "Magenta";
         }
         else if (colores == 2)
         {
             zombie.GetComponent<Renderer>().material.color = Color.green;
-            Debug.Log("Soy un zombie de color Verde");
+            color = "Green";
         }
+        Debug.Log(enviaMensaje(color));
+    }
 
+    /// <summary>
+    /// En este metodo hacemos el return del color del zombie
+    /// </summary>
+    /// <param name="color">
+    /// Color del zombie
+    /// </param>
+    /// <returns></returns>
+    string enviaMensaje(string color)
+    {
+        string mensajeColor = "Soy un zombie de color " + color;
+        return mensajeColor;
     }
 
 }
@@ -102,7 +131,9 @@ internal class Hero
         heroe.AddComponent<Camera>();
         heroe.name = "Heroe";
     }
-
+    /// <summary>
+    /// Metodo encargado del movimiento del heroe
+    /// </summary>
     public void movHero()
     {
         if (Input.GetKey(KeyCode.W))
